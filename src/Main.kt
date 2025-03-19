@@ -18,9 +18,40 @@
  * =====================================================================
  */
 
-
-
+const val EndTurn = 'X'
+val confirmAction = 'A'
+val playerOne = '0'
+val playerTwo = '1'
 fun main() {
-    println("Hello World!")
+    println("Welcome to Old Gold.")
+    println("--------------------")
+    val playernames = mutableListOf<String>()
+    println("In old gold there are only two players")
+
+    val playerOne = getString("You'll be player one, please enter your name: ")
+    val playerTwo = getString("You'll be player two, please enter your name: ")
+
+    println("")
+
 }
 
+fun getString(prompt: String): String {
+    var userInput: String
+    while (true) {
+        print(prompt)
+
+        userInput = readln()
+        if (userInput.isNotBlank())
+            break
+
+    }
+    return userInput
+
+}
+fun getPlayerOneMove(prompt: String): String {}
+
+fun getPlayerTwoMove(prompt: String): String {}
+
+fun displayGameAndPlayerStatus
+
+fun dataStprage

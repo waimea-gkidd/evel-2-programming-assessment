@@ -20,7 +20,7 @@
  *
  */
 
-const val numPlacements = 20
+const val coinCages = 20
 const val EMPTY = " "
 const val NUMCOINS = 9
 fun main() {
@@ -30,26 +30,38 @@ fun main() {
 
 //    listPlayers(playerNum)
 //    println()
-    //setPlayerNum.add //create a collection that can be called for listing which players turn it is as well as making them player 1 or 2
+//    setPlayerNum.add //create a collection that can be called for listing which players turn it is as well as making them player 1 or 2
 
     println("In old gold there are only two players")
 
     val playerOne = getString("You'll be player one, please enter your name: ")
     val playerTwo = getString("You'll be player two, please enter your name: ")
+    playerNames.add(playerOne)
     playerNames.add(playerTwo)
     println("Player one: $playerOne")
     println("Player two: $playerTwo")
 
-    val gameBoard = MutableList(20) {' '}
+    val gameBoard = setupCoins()
+    displayGame(gameBoard)
+
+    val coins = mutableListOf<String>()
+    val goldCoin = 0 {getString("There is one gold coin.")}
+    val silverCoins = 1-8 {getString("There are 8 silver coin.")}// 9 silver coins
+    coins.add(goldCoin)
+    coins.add(silverCoins) //add a function to filter through coins and place them randomly
+
+    // To shuffle through the list use the following from kotlin collections:
+//    snacks.shuffle()
+//    println("shuffled: $snacks")
 
 
     println("")
-    //val moves = moveOrder // display the moves in a function collection.
+    val move = getPlayerMove("Enter which coin you would like to move: ") // create a string which is able
 
 }
 fun setupCoins(): MutableList<String> {
-    val coinSetup = mutableListOf<String>()
-    for (i in 1..NUMCOINS) coinSetup.add(EMPTY)
+    val coinSetup = MutableList(coinCages)
+    {EMPTY}
     return coinSetup
 }
 
@@ -69,25 +81,18 @@ fun displayGame(coinPlacement: List<String>) {
 
 
 
-    val banner = ("+---".repeat(coinPlacement.size) + "+")
+    val banner = ("----------".repeat(coinPlacement.size) + " ")
 
     println(banner)
 
     for(i in 0 ..<coinPlacement.size) {
-        print("| cage ${i + 1} " .padEnd(9))
+        print("| coin ${i + 1} " .padEnd(4))
     }
 
     println("|")
 
     println(banner)
 
-    for(i in 0 ..<coinPlacement.size) {
-        print("| ${coinPlacement[i]}" .padEnd(9))
-    }
-
-    println("|")
-
-    println(banner)
 
 }
 fun getPlayerMove(prompt: String): String {
@@ -98,20 +103,20 @@ fun getPlayerMove(prompt: String): String {
 ////    create either a when statement to swap back and forth between players or create a new function for player 2
 //}
 //
-
-
+//
+//
 //fun listCoinPlacement(coinPlacement: List<String>) {
 //    println("Cages")
 //    for (i in 0..< coinPlacement.size) {
 //        println("Cage ${i + 1}: ${coinPlacement[i]}")
 //    }
 //}
-
+//
 //fun listPlayers(playerNum: List<String>) {
 //    println("Cages")
 //    for (i in 0..< playerNum.size) {
 //        println("Cage ${i + 1}: ${playerNum[i]}")
 //    }
 //}
-
+//
 //fun dataStprage

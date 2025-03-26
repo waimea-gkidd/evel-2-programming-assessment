@@ -45,17 +45,21 @@ fun main() {
     displayGame(gameBoard)
 
     val coins = mutableListOf<String>()
-    val goldCoin = 0 {getString("There is one gold coin.")}
-    val silverCoins = 1-8 {getString("There are 8 silver coin.")}// 9 silver coins
+    val goldCoin = "GC" //0 {getString("There is one gold coin.")}
+    val silverCoins = List(8) { "SC" }// 8 silver coins
+    val spaces = List(11) { "  " }// 8 silver coins
     coins.add(goldCoin)
-    coins.add(silverCoins) //add a function to filter through coins and place them randomly
-
+    coins.addAll(silverCoins) //add a function to filter through coins and place them randomly
+    coins.addAll(spaces) //add a function to filter through coins and place them randomly
+    coins.shuffle()
+    println("Shuffled: $coins")
     // To shuffle through the list use the following from kotlin collections:
 //    snacks.shuffle()
 //    println("shuffled: $snacks")
 
 
     println("")
+    println("\rCoins have been set up.")
     val move = getPlayerMove("Enter which coin you would like to move: ") // create a string which is able
 
 }
@@ -74,7 +78,7 @@ fun getString(prompt: String): String {
     }
     return userInput
 }
-fun gameLoop(prompt: String) {}
+fun gameLoop(prompt: String) {} //find code
 
 
 fun displayGame(coinPlacement: List<String>) {

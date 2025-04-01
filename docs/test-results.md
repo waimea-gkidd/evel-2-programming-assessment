@@ -14,7 +14,7 @@ Details of test data. Details of test data. Details of test data. Details of tes
 
 ### Test Result
 
-![example.png](screenshots/example.png)
+![Animation.gif](screenshots/Animation.gif)
 
 Comment on test result. Comment on test result. Comment on test result. Comment on test result. Comment on test result. Comment on test result.
 

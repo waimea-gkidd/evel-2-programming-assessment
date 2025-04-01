@@ -10,12 +10,12 @@ The development log captures key moments in your application development:
 
 ---
 
-## Date: xx/xx/20xx
+## Date: 01/04/2025
 
 Example description and notes. Example description and notes. Example description and notes. Example description and notes. Example description and notes. Example description and notes.
 
-![example.png](screenshots/example.png)
 
+![Animation.gif](..%2F..%2F..%2FAnimation.gif)
 ---
 
 ## Date: xx/xx/20xx

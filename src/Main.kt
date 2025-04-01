@@ -44,6 +44,22 @@ fun main() {
     playerNames.add(playerTwo)
     println("Player one: $playerOne")
     println("Player two: $playerTwo")
+    println("\n" +
+            "The rules are:\n" +
+            "Players take turns\n" +
+            "A turn can be either:\n" +
+            "Removing a coin in the left most square when there is one\n" +
+            "or \n" +
+            "Sliding any coin left\n" +
+            "Coins can slide any number of empty squares\n" +
+            "Coins cannot jump on or over another coin\n" +
+            "Gameplay:\n" +
+            "Taking turns, each player can do one of the following:\n" +
+            "\n" +
+            "Slide any coin a number of spaces to the left, as long as:\n" +
+            "Other coins are not jumped\n" +
+            "It does not share the same square as another coin\n" +
+            "Remove a coin from the far-left square if one is there")  // Rules stolen from ideas.md
 
     val gameBoard = setupCoins()
     displayGame(gameBoard)
@@ -96,12 +112,21 @@ fun displayGame(coinCages: List<String>) {
     println(banner)
 
     for(i in 0 ..<coinCages.size) {
-        print("| coin ${i + 1} " .padEnd(4))
+        print("| coin ${i + 1} " .padEnd(4)) // These cages are set for the coins which are to be moved
     }
 
     println("|")
 
     println(banner)
+
+    for(i in 0 ..<coinCages.size) {
+        print("| coin ${i + 1} " .padEnd(4)) // These cages are for the numbers which will be displayed under and will not be moved
+    }
+
+    println("|")
+
+    println(banner)
+
 
 
 }

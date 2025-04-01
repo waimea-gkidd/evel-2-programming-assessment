@@ -22,6 +22,7 @@
 
 const val coinCages = 20
 const val EMPTY = " "
+//const val coinSetup =
 fun main() {
     println("Welcome to Old Gold.")
     println("--------------------")
@@ -72,7 +73,7 @@ fun main() {
     coins.addAll(silverCoins) //add a function to filter through coins and place them randomly
     coins.addAll(spaces) //add a function to filter through coins and place them randomly
     coins.shuffle()
-    println("Shuffled: $coins")
+
     // To shuffle through the list use the following from kotlin collections:
 //    snacks.shuffle()
 //    println("shuffled: $snacks")
@@ -86,10 +87,16 @@ fun main() {
 
 }
 fun setupCoins(): MutableList<String> {
-    val coinSetup = MutableList(coinCages)
-    {EMPTY}
-    return coinSetup
+    val coinSetup = MutableList(coinCages) {EMPTY} // use coinSetup somewhere
+    val coins = mutableListOf("GC") + List(8) {"SC"} + List(11) { "  " }
+    // find a way to shuffle coins in grids as shuffle doesnt work (maybe because its a list?)
+
+    return coins.toMutableList()// idk how this happened but was told that because I decleared TWICE already that this was a mutable list; so i did it three times
+
 }
+/* sets up board with randomised placement of coins and spaces.
+    Stolen from monkeys in cages and adjusted it so I only know what half does
+*/
 
 fun getString(prompt: String): String {
     var userInput: String
@@ -100,29 +107,28 @@ fun getString(prompt: String): String {
     }
     return userInput
 }
-fun gameLoop(prompt: String) {} //find code
+fun gameLoop(prompt: String) {} //create a game loop to keep players inside a simple game until end
 
 
-fun displayGame(coinCages: List<String>) {
+fun displayGame(grid: List<String>) {
 
 
 
-    val banner = ("----------".repeat(coinCages.size) + " ")
+    val banner = ("----------".repeat(grid.size) + "  ")
 
     println(banner)
 
-    for(i in 0 ..<coinCages.size) {
-        print("| coin ${i + 1} " .padEnd(4)) // These cages are set for the coins which are to be moved
+    for(i in 0 ..<grid.size) {
+        print("| ${grid[i]} " + " ") // These cages are for the numbers which will be displayed under and will not be moved
     }
 
     println("|")
 
     println(banner)
 
-    for(i in 0 ..<coinCages.size) {
-        print("| coin ${i + 1} " .padEnd(4)) // These cages are for the numbers which will be displayed under and will not be moved
-    }
-
+    for(i in 0 ..<grid.size) {
+        print("| ${i + 1} " + "  " )// These cages are set for the coins which are to be moved
+    } // create if statement to make it so that when coins are placed for both grids to be lined up even if numbers get bigger
     println("|")
 
     println(banner)
@@ -131,7 +137,7 @@ fun displayGame(coinCages: List<String>) {
 
 }
 
-fun getPlayerMove(prompt: String): String {
+fun getPlayerMove(prompt: String): String { //create moves such as removing coins and moving them left
     print(prompt)
     return readln()
 //    println(readln())
@@ -163,23 +169,3 @@ fun getPlayerMove(prompt: String): String {
  */
 
 
-//    return move
-////    create either a when statement to swap back and forth between players or create a new function for player 2
-//}
-//
-//
-//
-//fun listCoinPlacement(coinPlacement: List<String>) {
-//    println("Cages")
-//    for (i in 0..< coinPlacement.size) {
-//        println("Cage ${i + 1}: ${coinPlacement[i]}")
-//    }
-//}
-//
-//fun listPlayers(playerNum: List<String>) {
-//    println("Cages")
-//    for (i in 0..< playerNum.size) {
-//        println("Cage ${i + 1}: ${playerNum[i]}")
-//    }
-//}
-//

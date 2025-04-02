@@ -64,6 +64,7 @@ fun main() {
 
     val gameBoard = setupCoins()
     displayGame(gameBoard)
+    gameLoop(gameBoard, playerNames)
 
     val coins = mutableListOf<String>()
     val goldCoin = "GC" //0 {getString("There is one gold coin.")}
@@ -82,7 +83,8 @@ fun main() {
     println("")
     println("\rCoins have been set up.")
     val move = getPlayerMove("Enter which coin you would like to move: ") // create a string which is able
-    println(move) // create game update function
+    val coinMove = getPlayerMove("Enter which grid you would like to move to: ")
+    println("Moved coin $move to grid $coinMove") // create game update function
 
 
 }
@@ -91,7 +93,7 @@ fun setupCoins(): MutableList<String> {
     val coins = mutableListOf("GC") + List(8) {"SC"} + List(11) { "  " }
     // find a way to shuffle coins in grids as shuffle doesnt work (maybe because its a list?)
 
-    return coins.toMutableList()// idk how this happened but was told that because I decleared TWICE already that this was a mutable list; so i did it three times
+    return coins.toMutableList()// idk how this happened
 
 }
 /* sets up board with randomised placement of coins and spaces.
@@ -107,42 +109,39 @@ fun getString(prompt: String): String {
     }
     return userInput
 }
-fun gameLoop(prompt: String) {} //create a game loop to keep players inside a simple game until end
+fun gameLoop(board: MutableList<String>, players: List<String>) {
+    var currentPlayerIndex = 0
+    while (true) {
+        displayGame(board)
+        val currentPlayer = players[currentPlayerIndex] //set a current player val and kotlin suggested an index
+
+
+    }
+//    val move = getPlayerMove("Enter the position of the coin to move: ").toIntOrNull()
+//    if (move != null && move in 1 until coinCages && board[move - 1] != EMPTY) {
+//        if (board[move - 2] == EMPTY) {}
+
+} //create a game loop to keep players inside a simple game until end
 
 
 fun displayGame(grid: List<String>) {
-
-
-
-    val banner = ("----------".repeat(grid.size) + "  ")
-
+    val banner = ("-------".repeat(grid.size) + "  ")
     println(banner)
-
     for(i in 0 ..<grid.size) {
         print("| ${grid[i]} " + " ") // These cages are for the numbers which will be displayed under and will not be moved
     }
-
     println("|")
-
     println(banner)
-
     for(i in 0 ..<grid.size) {
         print("| ${i + 1} " + "  " )// These cages are set for the coins which are to be moved
     } // create if statement to make it so that when coins are placed for both grids to be lined up even if numbers get bigger
     println("|")
-
     println(banner)
-
-
-
 }
-
 fun getPlayerMove(prompt: String): String { //create moves such as removing coins and moving them left
     print(prompt)
     return readln()
-//    println(readln())
 }
-
 
 /* to do:
         -set a val for data storage and create a function to store user data and update the game at the same time

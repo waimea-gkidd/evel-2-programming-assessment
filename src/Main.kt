@@ -20,9 +20,9 @@
  *
  */
 
-const val coinCages = 20
+const val REMOVE = 'X'
 const val EMPTY = " "
-//const val coinSetup =
+const val MOVE = 'L'
 fun main() {
     println("Welcome to Old Gold.")
     println("--------------------")
@@ -89,26 +89,20 @@ fun main() {
 
 }
 fun setupCoins(): MutableList<String> {
-    val coinSetup = MutableList(coinCages) {EMPTY} // use coinSetup somewhere
-    val coins = mutableListOf("GC") + List(8) {"SC"} + List(11) { "  " }
+    val coins = mutableListOf("GC") + List(8) {"SC"} + List(11) {EMPTY}
     // find a way to shuffle coins in grids as shuffle doesnt work (maybe because its a list?)
+    var shuffCoins = coins
+    println(coins)
+    println(shuffCoins)
 
-    return coins.toMutableList()// idk how this happened
 
+    return
 }
 /* sets up board with randomised placement of coins and spaces.
     Stolen from monkeys in cages and adjusted it so I only know what half does
 */
 
-fun getString(prompt: String): String {
-    var userInput: String
-    while (true) {
-        print(prompt)
-        userInput = readln()
-        if (userInput.isNotBlank()) break
-    }
-    return userInput
-}
+
 fun gameLoop(board: MutableList<String>, players: List<String>) {
     var currentPlayerIndex = 0
     while (true) {
@@ -117,9 +111,6 @@ fun gameLoop(board: MutableList<String>, players: List<String>) {
 
 
     }
-//    val move = getPlayerMove("Enter the position of the coin to move: ").toIntOrNull()
-//    if (move != null && move in 1 until coinCages && board[move - 1] != EMPTY) {
-//        if (board[move - 2] == EMPTY) {}
 
 } //create a game loop to keep players inside a simple game until end
 
@@ -134,13 +125,43 @@ fun displayGame(grid: List<String>) {
     println(banner)
     for(i in 0 ..<grid.size) {
         print("| ${i + 1} " + "  " )// These cages are set for the coins which are to be moved
-    } // create if statement to make it so that when coins are placed for both grids to be lined up even if numbers get bigger
+    }
     println("|")
     println(banner)
 }
 fun getPlayerMove(prompt: String): String { //create moves such as removing coins and moving them left
     print(prompt)
     return readln()
+}
+fun swapCages(cageList: MutableList<String>, gridNum1: Int, gridNum2: Int) { //stolen from monkey in cages "swapCages" function
+    println("<-> Swapping cages $gridNum1 and $gridNum2")
+    val swapCoins = cageList[gridNum1 - 1]
+//    val coinSetup = MutableList(coinCages) {EMPTY} // use coinSetup somewhere
+
+    cageList[gridNum1 - 1] = cageList[gridNum2 - 1]
+    cageList[gridNum2 - 1] = swapCoins
+}
+
+fun getString(prompt: String): String {
+    var userInput: String
+    while (true) {
+        print(prompt)
+        userInput = readln()
+        if (userInput.isNotBlank()) break
+        while (true) {
+            val action = getUserAction()
+
+            when (action) {
+                REMOVE -> EMPTY
+                // User wants to add a new value
+                MOVE -> swapCoins
+
+
+            }
+        }
+    }
+
+    return userInput
 }
 
 /* to do:

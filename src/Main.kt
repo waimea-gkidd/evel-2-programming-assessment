@@ -1,3 +1,5 @@
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction
+
 /**
  * =====================================================================
  * Programming Project for NCEA Level 2, Standard 91896
@@ -19,9 +21,11 @@
  * coinPlacement = cageList
  *
  */
-
+const val goldCoin = "GC" //0 {getString("There is one gold coin.")}
+val silverCoins = List(8) { "SC" }// 8 silver coins
+val EMPTY = List(11) { " " }
+val coins = mutableListOf<String>()
 const val REMOVE = 'X'
-const val EMPTY = " "
 const val MOVE = 'L'
 fun main() {
     println("Welcome to Old Gold.")
@@ -66,14 +70,12 @@ fun main() {
     displayGame(gameBoard)
     gameLoop(gameBoard, playerNames)
 
-    val coins = mutableListOf<String>()
-    val goldCoin = "GC" //0 {getString("There is one gold coin.")}
-    val silverCoins = List(8) { "SC" }// 8 silver coins
-    val spaces = List(11) { "  " }
+
     coins.add(goldCoin)
     coins.addAll(silverCoins) //add a function to filter through coins and place them randomly
-    coins.addAll(spaces) //add a function to filter through coins and place them randomly
-    coins.shuffle()
+    coins.addAll(EMPTY) //add a function to filter through coins and place them randomly
+    val shuffCoins = coins
+    shuffCoins.shuffle()
 
     // To shuffle through the list use the following from kotlin collections:
 //    snacks.shuffle()
@@ -91,12 +93,7 @@ fun main() {
 fun setupCoins(): MutableList<String> {
     val coins = mutableListOf("GC") + List(8) {"SC"} + List(11) {EMPTY}
     // find a way to shuffle coins in grids as shuffle doesnt work (maybe because its a list?)
-    var shuffCoins = coins
-    println(coins)
-    println(shuffCoins)
-
-
-    return
+return coins.<String>
 }
 /* sets up board with randomised placement of coins and spaces.
     Stolen from monkeys in cages and adjusted it so I only know what half does
@@ -105,26 +102,41 @@ fun setupCoins(): MutableList<String> {
 
 fun gameLoop(board: MutableList<String>, players: List<String>) {
     var currentPlayerIndex = 0
+    var turnCount = 0
+
     while (true) {
         displayGame(board)
-        val currentPlayer = players[currentPlayerIndex] //set a current player val and kotlin suggested an index
 
+        val currentPlayer = players[currentPlayerIndex] // kotlin pre-moved this and I just clicked 'tab'
+        println("$currentPlayer's turn")
+        println("you can remove a coin using 'X' when it is in the left most square\n" +
+        "you can also move a coin left by clicking 'L'.")
+        val Move = 'L'
+        
+        val REMOVE = 'X'
+        coins.removeAt(0) // make remove
+
+        turnCount++
+
+        if (board.contains(goldCoin)) {
+            println("Gold coin has been removed. $currentPlayer wins!")
+            break
+        }
+        currentPlayerIndex = (currentPlayerIndex + 1) % players.size //just clicked tab when popped up so idk what it does
 
     }
-
-} //create a game loop to keep players inside a simple game until end
-
+}
 
 fun displayGame(grid: List<String>) {
-    val banner = ("-------".repeat(grid.size) + "  ")
+    val banner = ("-------".repeat(grid.size) + EMPTY)
     println(banner)
     for(i in 0 ..<grid.size) {
-        print("| ${grid[i]} " + " ") // These cages are for the numbers which will be displayed under and will not be moved
+        print("| ${grid[i]} ") // These cages are for the numbers which will be displayed under and will not be moved
     }
     println("|")
     println(banner)
     for(i in 0 ..<grid.size) {
-        print("| ${i + 1} " + "  " )// These cages are set for the coins which are to be moved
+        print("| ${i + 1} " )// These cages are set for the coins which are to be moved
     }
     println("|")
     println(banner)
@@ -148,22 +160,11 @@ fun getString(prompt: String): String {
         print(prompt)
         userInput = readln()
         if (userInput.isNotBlank()) break
-        while (true) {
-            val action = getUserAction()
-
-            when (action) {
-                REMOVE -> EMPTY
-                // User wants to add a new value
-                MOVE -> swapCoins
 
 
-            }
-        }
     }
-
     return userInput
 }
-
 /* to do:
         -set a val for data storage and create a function to store user data and update the game at the same time
         -set controls for removing coins as well as moving them left (also add barrier so that use cannot drag coins out of cages)

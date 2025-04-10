@@ -1,5 +1,3 @@
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction
-
 /**
  * =====================================================================
  * Programming Project for NCEA Level 2, Standard 91896
@@ -21,12 +19,17 @@ import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction
  * coinPlacement = cageList
  *
  */
-const val goldCoin = "GC" //0 {getString("There is one gold coin.")}
-val silverCoins = List(8) { "SC" }// 8 silver coins
-val EMPTY = List(11) { " " }
-val coins = mutableListOf<String>()
+const val gridLength = 20
+const val GOLD_COIN = "GC"
+const val SILVER_COIN = "SC"
+const val SPACE = "  "
+
+val SILVER_COINS = List(8) { SILVER_COIN }// 8 silver coins
+val EMPTY_SPACES = List(11) { SPACE }
+
 const val REMOVE = 'X'
-const val MOVE = 'L'
+
+
 fun main() {
     println("Welcome to Old Gold.")
     println("--------------------")
@@ -66,16 +69,9 @@ fun main() {
             "It does not share the same square as another coin\n" +
             "Remove a coin from the far-left square if one is there")  // Rules stolen from ideas.md
 
-    val gameBoard = setupCoins()
+    val gameBoard = setupBoard()
     displayGame(gameBoard)
     gameLoop(gameBoard, playerNames)
-
-
-    coins.add(goldCoin)
-    coins.addAll(silverCoins) //add a function to filter through coins and place them randomly
-    coins.addAll(EMPTY) //add a function to filter through coins and place them randomly
-    val shuffCoins = coins
-    shuffCoins.shuffle()
 
     // To shuffle through the list use the following from kotlin collections:
 //    snacks.shuffle()
@@ -90,68 +86,111 @@ fun main() {
 
 
 }
-fun setupCoins(): MutableList<String> {
-    val coins = mutableListOf("GC") + List(8) {"SC"} + List(11) {EMPTY}
-    // find a way to shuffle coins in grids as shuffle doesnt work (maybe because its a list?)
-return coins.<String>
+
+
+fun setupBoard(): MutableList<String> {
+    val board = mutableListOf<String>()
+
+    board.add(GOLD_COIN)
+    board.addAll(SILVER_COINS) //add a function to filter through coins and place them randomly
+    board.addAll(EMPTY_SPACES) //add a function to filter through coins and place them randomly
+
+    board.shuffle()
+    return board
 }
 /* sets up board with randomised placement of coins and spaces.
     Stolen from monkeys in cages and adjusted it so I only know what half does
 */
 
-
 fun gameLoop(board: MutableList<String>, players: List<String>) {
     var currentPlayerIndex = 0
-    var turnCount = 0
 
     while (true) {
         displayGame(board)
+        val currentPlayer = players[currentPlayerIndex] // added with tab key from kotlin suggestion
+        getPlayerMove(board)
+        displayGame(board)
 
-        val currentPlayer = players[currentPlayerIndex] // kotlin pre-moved this and I just clicked 'tab'
         println("$currentPlayer's turn")
-        println("you can remove a coin using 'X' when it is in the left most square\n" +
-        "you can also move a coin left by clicking 'L'.")
-        val Move = 'L'
-        
-        val REMOVE = 'X'
-        coins.removeAt(0) // make remove
 
-        turnCount++
+        // Ask the player which position they want to interact with (1–20)
+        val pos = getPlayerMove("Enter coin position (1-20): ").toInt() - 1
 
-        if (board.contains(goldCoin)) {
-            println("Gold coin has been removed. $currentPlayer wins!")
+        // Ask what they want to do: move or remove
+        val action = getPlayerMove("Enter the square of the coin you want to move lef or 'X' to remove a coin (in the left most square): ")
+
+        // If the player types L, move the coin left by 1 space
+        if (action.uppercase() == "L") {
+            board[pos - 1] = board[pos]   // Move the coin to the space on the left
+            board[pos] = " "              // Leave the old spot empty (this is what board[pos] = " " means)
+        }
+
+        // If the player types X, try to remove the coin — only works at far left (position 0)
+        if (action.uppercase() == REMOVE) {
+            if (pos == 0) {
+                // If they remove the gold coin, they win
+                if (board[pos] == GOLD_COIN) {
+                    println("$currentPlayer wins! The gold coin was removed.")
+                    break
+                }
+                board[pos] =  " " // Otherwise just remove whatever coin is there
+            }
+        }
+
+        // If the gold coin is no longer on the board, the current player wins
+        if (!board.contains(GOLD_COIN)) {
+            println("$currentPlayer wins! The gold coin was removed.")
             break
         }
-        currentPlayerIndex = (currentPlayerIndex + 1) % players.size //just clicked tab when popped up so idk what it does
 
+        // Move to the next player's turn
+        currentPlayerIndex = (currentPlayerIndex + 1) % players.size
     }
 }
 
 fun displayGame(grid: List<String>) {
-    val banner = ("-------".repeat(grid.size) + EMPTY)
+    val banner = "-----".repeat(gridLength)
+
     println(banner)
-    for(i in 0 ..<grid.size) {
+    for(i in 0 ..<gridLength) {
         print("| ${grid[i]} ") // These cages are for the numbers which will be displayed under and will not be moved
     }
     println("|")
     println(banner)
-    for(i in 0 ..<grid.size) {
-        print("| ${i + 1} " )// These cages are set for the coins which are to be moved
+    for(i in 0 ..<gridLength) {
+        print("| ${(i + 1).toString().padStart(2)} " )// These cages are set for the coins which are to be moved
     }
     println("|")
     println(banner)
 }
-fun getPlayerMove(prompt: String): String { //create moves such as removing coins and moving them left
-    print(prompt)
-    return readln()
-}
-fun swapCages(cageList: MutableList<String>, gridNum1: Int, gridNum2: Int) { //stolen from monkey in cages "swapCages" function
-    println("<-> Swapping cages $gridNum1 and $gridNum2")
-    val swapCoins = cageList[gridNum1 - 1]
-//    val coinSetup = MutableList(coinCages) {EMPTY} // use coinSetup somewhere
 
-    cageList[gridNum1 - 1] = cageList[gridNum2 - 1]
-    cageList[gridNum2 - 1] = swapCoins
+
+fun getPlayerMove(prompt: String): String { //create moves such as removing coins and moving them left
+  val moveFromGrid = getInt("Enter a grid to move a coin from: ")
+    val moveToGrid = getInt("Enter a grid to move to: ")
+    swapCoins(gridLength,moveFromGrid, moveToGrid )
+    return gridLength
+}
+
+
+fun swapCoins(board: MutableList<String>, gridNum1: Int, gridNum2: Int) { //stolen from monkey in cages "swapCages" function
+    println("<-> Swapping cages $gridNum1 and $gridNum2")
+    val swap = board[gridNum1 - 1]
+
+    board[gridNum1 - 1] = board[gridNum2 - 1]
+    board[gridNum2 - 1] = swap
+}
+fun getInt(prompt: String): Int {
+    var intValue: Int?
+
+    while(true) {
+        val userInput = getString(prompt)
+        intValue = userInput.toIntOrNull()
+        if (intValue != null) break
+    }
+
+    return intValue!!
+
 }
 
 fun getString(prompt: String): String {

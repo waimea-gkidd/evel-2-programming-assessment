@@ -4,35 +4,35 @@ The test results show the actual outcome of the testing, following the [Test Pla
 
 ---
 
-## Example Test Name
+## Player names
 
-Example test description. Example test description.Example test description. Example test description.Example test description. Example test description.
+Test if player names are displayed 
 
 ### Test Data Used
 
-Details of test data. Details of test data. Details of test data. Details of test data. Details of test data. Details of test data. Details of test data.
+running the code to see if player names are displayed 
 
 ### Test Result
 
 ![Animation.gif](screenshots/Animation.gif)
 
-Comment on test result. Comment on test result. Comment on test result. Comment on test result. Comment on test result. Comment on test result.
+It worked better than expected 
 
 ---
 
-## Example Test Name
+## Check swap
 
-Example test description. Example test description.Example test description. Example test description.Example test description. Example test description.
+Test for coin swaps
 
 ### Test Data Used
 
-Details of test data. Details of test data. Details of test data. Details of test data. Details of test data. Details of test data. Details of test data.
+Testing to see if player input actually makes a difference 
 
 ### Test Result
 
-![example.png](screenshots/example.png)
+![Anim.gif](screenshots/Anim.gif)
 
-Comment on test result. Comment on test result. Comment on test result. Comment on test result. Comment on test result. Comment on test result.
+The selected coins as expected swapped places with selected destinations
 
 ---
 

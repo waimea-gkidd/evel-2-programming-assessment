@@ -15,24 +15,22 @@ Terminology:
 In this test I will simply be testing to see if player names work
 ### Test Data To Use
 
-i will run the code for multiple times to see if the game can process playernames
+I will run the code for multiple times to see if the game can process player names
 
 ### Expected Test Result
 
 I expect that the test will be able to use the player names to a reasonable extent
 ###
 
-## Example Test Name
+## Testing if coins move
 
-Example test description. Example test description. Example test description. Example test description. Example test description. Example test description.
-
+In this test I will simply be testing to see if player input can move a coin through grids
 ### Test Data To Use
 
-Details of test data and reasons for selection. Details of test data and reasons for selection. Details of test data and reasons for selection.
-
+I will run the code multiple times to see if the game can move a coin based on player input
 ### Expected Test Result
 
-Statement detailing what should happen. Statement detailing what should happen. Statement detailing what should happen. Statement detailing what should happen. 
+Selected coins should swap with spaces selected
 
 ---
 

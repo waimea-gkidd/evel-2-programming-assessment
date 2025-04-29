@@ -21,9 +21,10 @@
 const val gridLength = 20
 const val GOLD_COIN = "GC"
 const val SILVER_COIN = "SC"
-const val SPACE = "  "
 val SILVER_COINS = List(8) { SILVER_COIN }
 val EMPTY_SPACES = List(11) { SPACE }
+const val SPACE = "  "
+
 
 fun main() {
     println("Welcome to Old Gold.")
@@ -164,24 +165,6 @@ fun getString(prompt: String): String {
     }
     return userInput
 
-//    to do:
-//    -set a val for data storage and create a function to store user data and update the game at the same time
-//    -set controls for removing coins as well as moving them left (also add barrier so that use cannot drag coins out of cages)
-//    -check for a win (if so other player loses) and display a message for results with player names
-//            -if gold coin is not removed the continue game and swap to other player
-//
-//    1. create a data storage function. Teacher tips: use arrays/ variables most if not all of which will be global
-//    write a setupGame() method that puts sensible initial values in these variables, positions on board, ask user
-//    for data (player names ect)
-//    2. set controls. inside of player move function controls should be displayed and available to use through the use
-//    of vals/vars controls consist of removing coins and moving coins to the left.
-//    3. check for a win. If gold coin is removed then game ends and return results (probably stored in data function)
-//    4. if gold coin is not removed then continue game swap player and repeat.
-//    5. for game loop:  for this loop add the functions display, getPlayerInput, updateGame and check for win or loss
-//    - continue to next player.
-//    // Loop through the list - from collections
-//    for (Snack in snacks) {
-//        println(Snack)
 }
 
 

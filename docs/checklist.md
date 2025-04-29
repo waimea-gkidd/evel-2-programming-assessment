@@ -48,8 +48,8 @@ The program has been tested and there is documented evidence that:
   - [ ] scoring (if any)
   - [X] players winning
   - [ ] final feedback (if appropriate)
-- [ ] **Valid (expected) data** has been used to test **all data inputs**
-- [ ] Where tests have failed, **fixes** are discussed and **tests re-run**
+- [X] **Valid (expected) data** has been used to test **all data inputs**
+- [ ] Where tests have failed, **fixes** are discussed and **tests re-run** 
 
 ---
 
@@ -58,16 +58,16 @@ The program has been tested and there is documented evidence that:
 ### Program Code
 
 The program stores data using variables, where:
-- [ ] Variable **names are well-chosen** (relating to their purpose)
-- [ ] Variable names **begin with lowercase**
-- [ ] Naming is consistent, either **camelCase or snake_case**
-- [ ] Variables are **scoped appropriately** (global or local to a function)
-- [ ] **Global** variables are only used if **genuinely needed**
+- [X] Variable **names are well-chosen** (relating to their purpose)
+- [X] Variable names **begin with lowercase**
+- [X] Naming is consistent, either **camelCase or snake_case**
+- [X] Variables are **scoped appropriately** (global or local to a function)
+- [X] **Global** variables are only used if **genuinely needed**
 
 The program uses functions appropriately, where:
-- [ ] At least one uses **parameters** to pass data into it
-- [ ] At least one provides a **return value** to the calling code
-- [ ] The function **names are well-chosen**, relating to their functionality 
+- [X] At least one uses **parameters** to pass data into it
+- [X] At least one provides a **return value** to the calling code
+- [X] The function **names are well-chosen**, relating to their functionality 
 
 ### Program Documentation
 

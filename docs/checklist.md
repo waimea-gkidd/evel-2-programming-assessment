@@ -1,6 +1,6 @@
 # Success Criteria Checklist
 
-This checklist can be used to gauge progress towards different levels of success. Note that to pass, *all* of the Achieve Criteria must be met; for Merit, you need all Achieve, plus all the Merit Criteria, and so on for Excellence too.
+This checklist can be used to gauge progress towards different levels of success. Note that to pass, *all* the Achieve Criteria must be met; for Merit, you need all Achieve, plus all the Merit Criteria, and so on for Excellence too.
 
 ---
 
@@ -49,7 +49,7 @@ The program has been tested and there is documented evidence that:
   - [X] players winning
   - [ ] final feedback (if appropriate)
 - [X] **Valid (expected) data** has been used to test **all data inputs**
-- [ ] Where tests have failed, **fixes** are discussed and **tests re-run** 
+- [X] Where tests have failed, **fixes** are discussed and **tests re-run** 
 
 ---
 

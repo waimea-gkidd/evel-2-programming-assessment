@@ -61,18 +61,6 @@ fun main() {
 
     gameLoop(gameBoard, playerNames)
 
-    // To shuffle through the list use the following from kotlin collections:
-//    snacks.shuffle()
-//    println("shuffled: $snacks")
-
-
-//    println("")
-//    println("\rCoins have been set up.")
-//    val move = getPlayerMove("Enter which coin you would like to move: ") // create a string which is able
-//    val coinMove = getPlayerMove("Enter which grid you would like to move to: ")
-//    println("Moved coin $move to grid $coinMove") // create game update function
-//
-
 }
 
 fun setupBoard(): MutableList<String> {
@@ -80,15 +68,16 @@ fun setupBoard(): MutableList<String> {
     board.add(GOLD_COIN)
     board.addAll(SILVER_COINS) //add a function to filter through coins and place them randomly
     board.addAll(EMPTY_SPACES) //add a function to filter through coins and place them randomly
-    board.shuffle()
+    board.shuffle() // shuffle from kotlin collections
     return board
+    /* sets up board with randomised placement of coins and spaces.
+    Stolen from monkeys in cages and from kotlin collections
+*/
 }
 
-/* sets up board with randomised placement of coins and spaces.
-    Stolen from monkeys in cages and adjusted it, so I only know what half does
-*/
 
-fun displayGame(grid: List<String>) {
+
+fun displayGame(grid: List<String>) { //grids are cages from monkeys in cages
     val banner = "-----".repeat(gridLength)
 
     println(banner)
@@ -139,8 +128,8 @@ fun gameLoop(board: MutableList<String>, players: List<String>) {
 
         println("$currentPlayer's turn")
 
-        if (userInput(board)) {
-            println("$currentPlayer has removed the Gold Coin from slot 1 and won the game!")
+       if (userInput(board)) {
+            println("$currentPlayer removed the Gold Coin from slot 1 and has won the game!")
             break // Ends the game when gold coin is removed
         }
         // Move to the next player's turn
@@ -148,7 +137,7 @@ fun gameLoop(board: MutableList<String>, players: List<String>) {
     }
 }
 
-fun setupCoins(): MutableList<String> {
+fun setupCoins(): MutableList<String> { // from monkeys in cages
     val gameLength = mutableListOf<String>()
     for (i in 1..gridLength) gameLength.add(SPACE)
     return gameLength

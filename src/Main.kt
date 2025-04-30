@@ -95,7 +95,7 @@ fun displayGame(grid: List<String>) { //grids are cages from monkeys in cages
 }
 
 fun userInput(board: MutableList<String>): Boolean { //create moves such as removing coins and moving them left
-    val input = getString("Enter the number above the coin you want to move, or 'X' to remove from slot 1: ")
+    val input = getString("Enter the number below the coin you want to move, or 'X' to remove from slot 1: ")
 
     if (input.uppercase() == "X") {
         if (board[0] == GOLD_COIN) {  // If the player types X, try to remove the coin — only works at far left (position 0)
@@ -108,7 +108,7 @@ fun userInput(board: MutableList<String>): Boolean { //create moves such as remo
         }
     } else {
         val moveFrom = input.toInt()
-        val moveTo = getInt("Enter the number above the slot you want to move to: ")
+        val moveTo = getInt("Enter the number below the slot you want to move to: ")
         swapCoins(board, moveFrom, moveTo)
         return false
     }

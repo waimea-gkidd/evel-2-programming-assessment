@@ -72,8 +72,8 @@ The program uses functions appropriately, where:
 ### Program Documentation
 
 The program code is well-commented:
-- [ ] **JavaDoc Block comments** are used at the top of each **file** and **function**
-- [ ] Comments accurately describe the **function and behaviour** of the code:
+- [X] **JavaDoc Block comments** are used at the top of each **file** and **function**
+- [X] Comments accurately describe the **function and behaviour** of the code:
   - [ ] Defining the **purpose** of functions / key blocks of code
   - [ ] Explaining the **reason** (the '**why**') of key parts of the code
   - [ ] Defining function **parameters** and/or **return values**

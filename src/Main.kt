@@ -144,7 +144,7 @@ fun setupCoins(): MutableList<String> { // from monkeys in cages
     return gameLength
 }
 
-fun getInt(prompt: String): Int {
+fun getInt(prompt: String): Int { //reworked getString from madlibs
     var intValue: Int?
 
     while (true) {
@@ -156,7 +156,7 @@ fun getInt(prompt: String): Int {
     return intValue!!
 }
 
-fun getString(prompt: String): String {
+fun getString(prompt: String): String { //From madlibs getString
     var userInput: String
     while (true) {
         print(prompt)
